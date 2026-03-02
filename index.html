@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morph 3D Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+  </head>
+  <body>
+
+    <!-- Background depth blobs -->
+    <div class="bg-scene">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- ── HEADER ── -->
+    <header>
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="Morph 3D Studio" class="logo-img" />
+        <div class="logo-text">
+          <span class="brand">MORPH 3D</span>
+          <span class="sub">Studio</span>
+        </div>
+      </a>
+
+      <nav class="nav-desktop d-none d-lg-flex">
+        <a href="#">All Products</a>
+        <a href="#">Categories</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Contact Us</a>
+      </nav>
+
+      <a href="#" class="btn-glass nav-cta-desktop d-none d-lg-inline-flex">Order Now</a>
+
+      <!-- Hamburger (mobile/tablet) -->
+      <button class="hamburger d-lg-none" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- ── MOBILE DRAWER ── -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <nav class="nav-mobile">
+        <a href="#" onclick="closeMenu()">All Products</a>
+        <a href="#" onclick="closeMenu()">Categories</a>
+        <a href="#" onclick="closeMenu()">New Arrivals</a>
+        <a href="#" onclick="closeMenu()">Contact Us</a>
+      </nav>
+      <a href="#" class="btn-solid">Order Now</a>
+    </div>
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="closeMenu()"></div>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="container-fluid px-section">
+        <div class="row align-items-center min-vh-section g-0">
+
+          <!-- Left: text -->
+          <div class="col-12 col-lg-6 hero-content">
+            <h1>Beyond<br /><em>The</em><br />Blueprint</h1>
+            <p>At Morph 3D Studio, small objects make a big impression. Whether for events, businesses, or personal collections, every piece is carefully made to stand out.</p>
+            <div class="hero-actions">
+              <a href="#" class="btn-solid">Explore Products</a>
+              <a href="#" class="btn-glass">How to order?</a>
+            </div>
+          </div>
+
+          <!-- Right: 3D shape (hidden on mobile) -->
+          <div class="col-lg-6 d-none d-lg-flex justify-content-center hero-shape">
+            <div class="shape-scene">
+              <div class="shape-wrap">
+                <canvas id="shapeCanvas"></canvas>
+              </div>
+              <div class="shape-glow"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ticker">
+        <span class="ticker-dot"></span>
+        Scroll to explore
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="features">
+      <div class="container-fluid px-section">
+
+        <div class="features-header mb-5">
+          <p class="features-eyebrow">Why Morph 3D</p>
+          <h2>Built different.<br/><em>By design.</em></h2>
+        </div>
+
+        <div class="row g-3">
+
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3>Affordable</h3>
+              <p>Premium 3D printed pieces that won't break the bank. Quality you can feel without the premium price tag.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h3>Customizable</h3>
+              <p>Your vision, your design. We work with you to bring any custom shape, logo, or concept to life.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>
+              </div>
+              <h3>Lots of Colors</h3>
+              <p>A wide palette of filament colors to match your brand, event theme, or personal aesthetic perfectly.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-sm-6 col-lg-3">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <h3>Delivery</h3>
+              <p>We ship directly to your door. Fast, secure, and carefully packed so your order arrives in perfect condition.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRODUCT CATALOG ── -->
+    <section class="catalog">
+      <div class="container-fluid px-section">
+
+        <!-- Section header -->
+        <div class="catalog-header mb-5">
+          <p class="features-eyebrow">Our Collection</p>
+          <h2 class="catalog-title">Explore <em>Products</em></h2>
+        </div>
+
+        <!-- Tabs -->
+        <div class="catalog-tabs mb-5">
+          <button class="catalog-tab active" data-tab="all">All Products</button>
+          <button class="catalog-tab" data-tab="new">New Arrivals</button>
+          <button class="catalog-tab" data-tab="best">Best Sellers</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="row g-4" id="productGrid">
+
+          <!-- Product 1 — All, New -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all new">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <span class="product-badge new">New</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Desk Decor</p>
+                <h4 class="product-name">Geometric Cube Stand</h4>
+                <p class="product-price">₱ 199</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 — All, Best -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all best">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <span class="product-badge best">Best Seller</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Accessories</p>
+                <h4 class="product-name">Custom Name Keychain</h4>
+                <p class="product-price">₱ 99</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 — All, Best -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all best">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                </div>
+                <span class="product-badge best">Best Seller</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Souvenirs</p>
+                <h4 class="product-name">Logo Display Trophy</h4>
+                <p class="product-price">₱ 349</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 — All, New -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all new">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <span class="product-badge new">New</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Desk Decor</p>
+                <h4 class="product-name">Phone & Tablet Stand</h4>
+                <p class="product-price">₱ 249</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 — All, Best -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all best">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <span class="product-badge best">Best Seller</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Events</p>
+                <h4 class="product-name">Wedding Cake Topper</h4>
+                <p class="product-price">₱ 449</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 — All, New -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all new">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <span class="product-badge new">New</span>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Home</p>
+                <h4 class="product-name">Mini House Nameplate</h4>
+                <p class="product-price">₱ 179</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 7 — All -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Awards</p>
+                <h4 class="product-name">Custom Medal</h4>
+                <p class="product-price">₱ 159</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8 — All -->
+          <div class="col-6 col-sm-6 col-lg-3 product-item" data-tags="all">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+              </div>
+              <div class="product-info">
+                <p class="product-category">Business</p>
+                <h4 class="product-name">Brand Logo Model</h4>
+                <p class="product-price">₱ 399</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end row -->
+
+      </div>
+    </section>
+
+    <!-- ── COLORS ── -->
+    <section class="colors-section">
+      <div class="container-fluid px-section">
+
+        <div class="catalog-header mb-5">
+          <p class="features-eyebrow">Filament Palette</p>
+          <h2 class="catalog-title">Pick your <em>Color</em></h2>
+        </div>
+
+        <div class="colors-grid">
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#1a1a1a; box-shadow: 0 0 0 1px rgba(255,255,255,0.15);"></div>
+            <span>Black</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#f5f5f5; box-shadow: 0 0 0 1px rgba(255,255,255,0.2);"></div>
+            <span>White</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#6b4423;"></div>
+            <span>Brown</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#d9c4a7;"></div>
+            <span>Beige</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#f4a7b9;"></div>
+            <span>Sakura Pink</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#d62828;"></div>
+            <span>Red</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#f77f00;"></div>
+            <span>Orange</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#2d8a4e;"></div>
+            <span>Green</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#6b7c45;"></div>
+            <span>Olive Green</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#a8d8c8;"></div>
+            <span>Mint Green</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#1d6fa4;"></div>
+            <span>Blue</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#3b5068;"></div>
+            <span>Army Blue</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#87ceeb;"></div>
+            <span>Sky Blue</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#7b2d8b;"></div>
+            <span>Purple</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#ccccff;"></div>
+            <span>Periwinkle</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#f9e04b;"></div>
+            <span>Yellow</span>
+          </div>
+
+          <div class="color-swatch">
+            <div class="swatch-circle" style="background:#e8d5a3;"></div>
+            <span>Almond Yellow</span>
+          </div>
+
+        </div>
+        <!-- end colors grid -->
+
+        <p class="colors-note">Can't find your color? <a href="/cdn-cgi/l/email-protection#4d20223f3d257e290d2a202c2421632e2220">Contact us</a> for custom color requests.</p>
+
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="container-fluid px-section">
+        <div class="row g-5 py-footer">
+
+          <!-- Brand col -->
+          <div class="col-12 col-md-5 col-lg-4">
+            <div class="footer-brand">
+              <a href="#" class="logo mb-3 d-inline-flex">
+                <img src="images/logo.png" alt="Morph 3D Studio" class="logo-img" />
+                <div class="logo-text">
+                  <span class="brand">MORPH 3D</span>
+                  <span class="sub">Studio</span>
+                </div>
+              </a>
+              <p class="footer-tagline">Small objects, big impressions.<br/>Crafted with precision since 2025.</p>
+              <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=61582600806736" target="_blank" rel="noopener" aria-label="Facebook">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/morph3dstudios?igsh=MWNwMTIxa21hc2RoMg==" target="_blank" rel="noopener" aria-label="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="/cdn-cgi/l/email-protection#acc1c3dedcc49fc8eccbc1cdc5c082cfc3c1" aria-label="Email">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explore col -->
+          <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+            <div class="footer-col">
+              <h4>Explore</h4>
+              <ul>
+                <li><a href="#">All Products</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">How to Order</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Contact col -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div class="footer-col">
+              <h4>Get in Touch</h4>
+              <ul class="footer-contact">
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="/cdn-cgi/l/email-protection#94f9fbe6e4fca7f0d4f3f9f5fdf8baf7fbf9"><span class="__cf_email__" data-cfemail="88e5e7faf8e0bbecc8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></a>
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                  <a href="tel:09944721386">0994 472 1386</a>
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>Gen. Mamerto Natividad,<br/>Nueva Ecija, Philippines 3125</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <div class="container-fluid px-section">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <span>© 2025 Morph 3D Studio. All rights reserved.</span>
+            <span class="footer-est">Est. 2025 · Nueva Ecija, PH</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      /* ── Catalog tabs ── */
+      document.querySelectorAll('.catalog-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.catalog-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const selected = tab.dataset.tab;
+          document.querySelectorAll('.product-item').forEach(item => {
+            const tags = item.dataset.tags.split(' ');
+            if (tags.includes(selected)) {
+              item.style.display = '';
+              item.classList.add('product-visible');
+            } else {
+              item.style.display = 'none';
+              item.classList.remove('product-visible');
+            }
+          });
+        });
+      });
+
+      /* ── Hamburger toggle ── */
+      const hamburger = document.getElementById('hamburger');
+      const drawer    = document.getElementById('mobileDrawer');
+      const backdrop  = document.getElementById('drawerBackdrop');
+
+      hamburger.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        backdrop.classList.toggle('open', open);
+        hamburger.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+
+      function closeMenu() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      }
+
+      /* ── 3D Icosahedron ── */
+      const canvas = document.getElementById('shapeCanvas');
+      const ctx    = canvas.getContext('2d');
+      const SIZE   = 500;
+      canvas.width  = SIZE;
+      canvas.height = SIZE;
+
+      const t = (1 + Math.sqrt(5)) / 2;
+      const rawVerts = [
+        [-1,  t,  0], [ 1,  t,  0], [-1, -t,  0], [ 1, -t,  0],
+        [ 0, -1,  t], [ 0,  1,  t], [ 0, -1, -t], [ 0,  1, -t],
+        [ t,  0, -1], [ t,  0,  1], [-t,  0, -1], [-t,  0,  1]
+      ];
+      const faces = [
+        [0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],
+        [1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],
+        [3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],
+        [4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]
+      ];
+      const verts = rawVerts.map(v => {
+        const len = Math.hypot(...v);
+        return v.map(x => x / len);
+      });
+
+      let angleX = 0.3, angleY = 0;
+
+      function rotateY(v, a) {
+        const [x, y, z] = v;
+        return [x * Math.cos(a) + z * Math.sin(a), y, -x * Math.sin(a) + z * Math.cos(a)];
+      }
+      function rotateX(v, a) {
+        const [x, y, z] = v;
+        return [x, y * Math.cos(a) - z * Math.sin(a), y * Math.sin(a) + z * Math.cos(a)];
+      }
+      function project(v, scale, cx, cy) {
+        const fov = 3.5;
+        const z = v[2] + fov;
+        return [(v[0] / z) * scale + cx, (v[1] / z) * scale + cy];
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, SIZE, SIZE);
+        const cx = SIZE / 2, cy = SIZE / 2, scale = SIZE * 0.9;
+
+        const transformed = verts.map(v => {
+          let r = rotateY(v, angleY);
+          r = rotateX(r, angleX);
+          return r;
+        });
+
+        const sorted = faces.map(f => {
+          const depth = (transformed[f[0]][2] + transformed[f[1]][2] + transformed[f[2]][2]) / 3;
+          return { f, depth };
+        }).sort((a, b) => a.depth - b.depth);
+
+        sorted.forEach(({ f, depth }) => {
+          const pts   = f.map(i => project(transformed[i], scale, cx, cy));
+          const norm  = (depth + 1) / 2;
+          const alpha = 0.04 + norm * 0.09;
+          ctx.beginPath();
+          ctx.moveTo(pts[0][0], pts[0][1]);
+          ctx.lineTo(pts[1][0], pts[1][1]);
+          ctx.lineTo(pts[2][0], pts[2][1]);
+          ctx.closePath();
+          ctx.fillStyle   = `rgba(255,255,255,${alpha})`;
+          ctx.fill();
+          ctx.strokeStyle = `rgba(255,255,255,${0.15 + norm * 0.5})`;
+          ctx.lineWidth   = 0.8;
+          ctx.stroke();
+        });
+
+                sorted.slice(-5).forEach(({ f }) => {
+                  const pts = f.map(i => project(transformed[i], scale, cx, cy));
+                  const mx  = (pts[0][0] + pts[1][0] + pts[2][0]) / 3;
+                  const my  = (pts[0][1] + pts[1][1] + pts[2][1]) / 3;
+                  const grad = ctx.createRadialGradient(mx, my, 0, mx, my, 50);
+                  grad.addColorStop(0, 'rgba(255,255,255,0.3)');
+                  grad.addColorStop(1, 'rgba(255,255,255,0)');
+                  ctx.fillStyle = grad;
+                  ctx.beginPath();
+                  ctx.arc(mx, my, 50, 0, Math.PI * 2);
+                  ctx.fill();
+                });
+        
+                angleY += 0.005;
+                angleX += 0.003;
+                requestAnimationFrame(draw);
+              }
+              draw();
+            </script>
+          </body>
+        </html> 
